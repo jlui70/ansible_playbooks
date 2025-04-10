@@ -16,8 +16,8 @@ Se você já possui um MySQL instalado, **não recomendamos utilizar este playbo
     Clone o repositório no diretório `/etc/ansible` (ou onde você preferir):
 
     ```bash
-    git clone https://github.com/josezipf/ansible_playbooks.git /etc/ansible
     cd /etc/ansible
+    git clone https://github.com/josezipf/ansible_playbooks.git /etc/ansible
     ```
 
 2. **Instalar as Roles do Ansible Galaxy**:
