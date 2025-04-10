@@ -7,6 +7,8 @@ Este repositório contém o playbook Ansible para instalar o Zabbix completo com
 **As roles utilizadas neste playbook fazem a instalação de um MySQL zerado.**  
 Se você já possui um MySQL instalado, **não recomendamos utilizar este playbook**, pois as roles irão alterar a senha do usuário `root` do MySQL e podem sobrescrever configurações existentes. Certifique-se de utilizar este playbook em um ambiente onde o MySQL possa ser instalado ou reinstalado sem impactar outros serviços.
 
+**O sistema operacional deve ser Ubuntu 24.04 e deve estar completamente zerado**, ou seja, sem nenhum outro serviço rodando. Este playbook foi projetado para configurar o Zabbix do zero, e a instalação de outros serviços pode interferir no processo. **Evite usar em servidores com outros serviços ou configurações pré-existentes.**
+
 ## Como Usar
 
 1. **Clone o repositório**:
