@@ -27,7 +27,7 @@ Este repositório contém o playbook Ansible para instalar o Zabbix completo com
     Após instalar as roles, você pode rodar o playbook com o comando abaixo:
 
     ```bash
-    ansible-playbook -i hosts install_zabbix.yml
+    ansible-playbook -i hosts playbook_install_zabbix7_ubuntu2404_mysql.yml
     ```
 
 > Lembre-se de editar o arquivo `hosts` para refletir os seus servidores.
