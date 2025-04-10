@@ -2,7 +2,7 @@
 
 Este repositório contém o playbook Ansible para instalar o Zabbix completo com suporte a SNMP no Ubuntu 24.04.
 
-## Aviso Importante
+## ⚠️ Aviso Importante
 
 **As roles utilizadas neste playbook fazem a instalação de um MySQL zerado.**  
 Se você já possui um MySQL instalado, **não recomendamos utilizar este playbook**, pois as roles irão alterar a senha do usuário `root` do MySQL e podem sobrescrever configurações existentes. Certifique-se de utilizar este playbook em um ambiente onde o MySQL possa ser instalado ou reinstalado sem impactar outros serviços.
