@@ -6,14 +6,16 @@ Este repositório contém o playbook Ansible para instalar o Zabbix completo com
 
 1. **Clone o repositório**:
 
+    Clone o repositório no diretório `/etc/ansible` (ou onde você preferir):
+
     ```bash
-    git clone https://github.com/josezipf/ansible_playbooks.git
-    cd ansible_playbooks
+    git clone https://github.com/josezipf/ansible_playbooks.git /etc/ansible
+    cd /etc/ansible
     ```
 
 2. **Instalar as Roles do Ansible Galaxy**:
 
-    Execute os seguintes comandos para instalar as roles necessárias:
+    Antes de rodar o playbook, instale as roles necessárias do Ansible Galaxy:
 
     ```bash
     ansible-galaxy install josezipf.zabbix7-mysql-ubuntu2404
@@ -22,15 +24,44 @@ Este repositório contém o playbook Ansible para instalar o Zabbix completo com
     ansible-galaxy install josezipf.zabbix_agent2_v7_snmp
     ```
 
-3. **Rodar o Playbook**:
+3. **Editar o Inventário**:
 
-    Após instalar as roles, você pode rodar o playbook com o comando abaixo:
+    Abra o arquivo `hosts` localizado em `/etc/ansible/hosts` e adicione ou altere o inventário para refletir os seus servidores de destino.
 
-    ```bash
-    ansible-playbook -i hosts playbook_install_zabbix7_ubuntu2404_mysql.yml
+    Exemplo de inventário (`/etc/ansible/hosts`):
+
+    ```ini
+    [zabbix_servers]
+    seu_servidor_ansible ansible_connection=local
     ```
 
-> Lembre-se de editar o arquivo `hosts` para refletir os seus servidores.
+4. **Editar o Playbook**:
+
+    Abra o playbook `ansible_playbooks/zabbix/playbook_install_zabbix7_ubuntu2404_mysql.yml` e certifique-se de que o valor de `hosts` está corretamente configurado para o seu inventário. Substitua `local` ou `all` pelo grupo de hosts que você deseja usar.
+
+    Exemplo de playbook:
+
+    ```yaml
+    ---
+    - name: Instalar Zabbix completo com suporte SNMP no Ubuntu 24.04
+      hosts: zabbix_servers  # Substitua por seu grupo de servidores
+      become: true
+      roles:
+        - role: josezipf.zabbix7-mysql-ubuntu2404
+        - role: josezipf.zabbix7-server-ubuntu2404
+        - role: josezipf.zabbix7_frontend_ubuntu2404
+        - role: josezipf.zabbix_agent2_v7_snmp
+    ```
+
+5. **Rodar o Playbook**:
+
+    Após editar o inventário e o playbook, execute o playbook com o seguinte comando:
+
+    ```bash
+    ansible-playbook -i /etc/ansible/hosts ansible_playbooks/zabbix/playbook_install_zabbix7_ubuntu2404_mysql.yml
+    ```
+
+    > Lembre-se de substituir `/etc/ansible/hosts` pelo caminho do seu inventário, caso não esteja usando o padrão.
 
 ---
 
