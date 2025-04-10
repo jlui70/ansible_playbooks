@@ -39,7 +39,7 @@ Se você já possui um MySQL instalado, **não recomendamos utilizar este playbo
 
     ```ini
     [zabbix_servers]
-    seu_servidor_ansible ansible_connection=local
+    seu_servidor
     ```
 
 4. **Editar o Playbook**:
