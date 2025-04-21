@@ -29,6 +29,8 @@ Se você já possui um MySQL instalado, **não recomendamos utilizar este playbo
     ansible-galaxy install josezipf.zabbix7-server-ubuntu2404
     ansible-galaxy install josezipf.zabbix7_frontend_ubuntu2404
     ansible-galaxy install josezipf.zabbix_agent2_v7_snmp
+    ansible-galaxy install josezipf.hardening_zabbix_web
+    ansible-galaxy install josezipf.apache2_https_mkcert
     ```
 
 3. **Editar o Inventário**:
