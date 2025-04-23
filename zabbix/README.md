@@ -60,6 +60,8 @@ Se você já possui um MySQL instalado, **não recomendamos utilizar este playbo
         - role: josezipf.zabbix7-server-ubuntu2404
         - role: josezipf.zabbix7_frontend_ubuntu2404
         - role: josezipf.zabbix_agent2_v7_snmp
+        - role: josezipf.apache2_https_mkcert
+        - role: josezipf.hardening_zabbix_web
     ```
 
 5. **Rodar o Playbook**:
