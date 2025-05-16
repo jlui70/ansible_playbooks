@@ -1,0 +1,6 @@
+---
+- name: Instalar Zabbix completo com suporte SNMP no Ubuntu 24.04
+  hosts: all
+  become: true
+  roles:
+    - role: josezipf.zabbix_agent2_v7_snmp
