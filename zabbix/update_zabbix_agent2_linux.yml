@@ -1,7 +1,7 @@
 ---
 - name: Update Zabbix Agent 2 para a última versão
   hosts: all
-  become: yes
+  become: true
   roles:
     - role: zabbix.zabbix.agent
       vars:
