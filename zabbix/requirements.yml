@@ -1,3 +1,6 @@
 collections:
   - name: zabbix.zabbix
     version: 1.4.0  # ou a versão que você precisa
+
+roles:
+  - name: josezipf.zabbix_agent2_v7_snmp
