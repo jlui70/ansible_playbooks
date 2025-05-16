@@ -1,43 +1,12 @@
 ---
-- name: Instalar ferramentas básicas (ifconfig e htop)
+- name: Instalar ifconfig e htop (método universal)
   hosts: all
-  become: yes  # Executa como root/sudo
+  become: yes
 
   tasks:
-    - name: Instalar pacotes no Debian/Ubuntu
-      ansible.builtin.apt:
+    - name: Instalar pacotes net-tools (ifconfig) e htop
+      ansible.builtin.package:
         name:
-          - net-tools  # Fornece o ifconfig
+          - net-tools  # fornece o ifconfig
           - htop
         state: present
-        update_cache: yes
-      when: ansible_facts['os_family'] == 'Debian'
-
-    - name: Instalar pacotes no RHEL/CentOS
-      ansible.builtin.yum:
-        name:
-          - net-tools
-          - htop
-        state: present
-      when: ansible_facts['os_family'] == 'RedHat'---
-- name: Instalar ferramentas básicas (ifconfig e htop)
-  hosts: all
-  become: yes  # Executa como root/sudo
-
-  tasks:
-    - name: Instalar pacotes no Debian/Ubuntu
-      ansible.builtin.apt:
-        name:
-          - net-tools  # Fornece o ifconfig
-          - htop
-        state: present
-        update_cache: yes
-      when: ansible_facts['os_family'] == 'Debian'
-
-    - name: Instalar pacotes no RHEL/CentOS
-      ansible.builtin.yum:
-        name:
-          - net-tools
-          - htop
-        state: present
-      when: ansible_facts['os_family'] == 'RedHat'
