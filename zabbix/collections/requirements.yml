@@ -1,3 +1,9 @@
+---
 collections:
   - name: zabbix.zabbix
-    version: 1.4.0  # mesma versão que já está instalada localmente
+    version: "1.4.0"
+
+roles:
+  - name: josezipf.zabbix_agent2_v7_snmp
+    src: https://github.com/josezipf/ansible-role-zabbix_agent2_v7_snmp.git
+    version: main  # ou a branch/tag específica que quiser
