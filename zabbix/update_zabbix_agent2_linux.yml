@@ -1,0 +1,13 @@
+---
+- name: Update Zabbix Agent 2 para a última versão
+  hosts: all
+  become: yes
+  roles:
+    - role: zabbix.zabbix.agent
+      vars:
+        agent_variant: 2                    # Instala Zabbix Agent 2
+        agent_param_server: "192.168.4.10"   # Servidor Zabbix para passive checks
+        agent_param_serveractive: "192.168.4.10" # Servidor Zabbix para active checks
+        agent_package_state: latest         # Instala a versão mais recente disponível
+        agent_apply_firewalld_rule: false   # Não altera configurações de firewall
+        agent_param_hostmetadata: "srvlinux"
