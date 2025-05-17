@@ -12,7 +12,7 @@
         package_params: "/SERVER=192.168.4.10 /SERVERACTIVE=192.168.4.10 /HOSTNAME={{ ansible_hostname }}"
 
     - name: Modificar HostMetadata no arquivo de configuração do Zabbix
-      ansible.windows.win_lineinfile:
+      community.windows.win_lineinfile:
         path: "C:\\Program Files\\Zabbix Agent 2\\zabbix_agent2.conf"
         regexp: '^HostMetadata=.*'
         line: "HostMetadata=Windows"
