@@ -1,6 +1,9 @@
 ---
-- name: Instalar Zabbix completo com suporte SNMP no Ubuntu 24.04
-  hosts: all
+- name: Instala SNMP Client e Mibs
+  ansible.builtin.apt:
+    name: 
+      - snmp 
+      - snmp-mibs-downloader
+    state: present
+    update_cache: true
   become: true
-  roles:
-    - role: josezipf.zabbix_agent2_v7_snmp
