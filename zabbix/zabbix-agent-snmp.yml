@@ -1,9 +1,13 @@
 ---
-- name: Instala SNMP Client e Mibs
-  ansible.builtin.apt:
-    name: 
-      - snmp 
-      - snmp-mibs-downloader
-    state: present
-    update_cache: true
+- name: Instalar SNMP comandos e MIBS
+  hosts: linux
   become: true
+
+  tasks:
+    - name: Instalar pacotes do Zabbix Agent e SNMP
+      ansible.builtin.apt:
+        name:
+          - snmp
+          - snmp-mibs-downloader
+        state: present
+        update_cache: true
