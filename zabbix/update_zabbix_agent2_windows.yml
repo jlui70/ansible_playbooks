@@ -4,7 +4,7 @@
   tasks:
 
     - name: Atualizar Zabbix Agent 2 via Chocolatey
-      win_chocolatey:
+      chocolatey.chocolatey.win_chocolatey:
         name: zabbix-agent2
         version: 7.2
         state: latest
@@ -12,13 +12,13 @@
         package_params: "/SERVER=192.168.4.10 /SERVERACTIVE=192.168.4.10 /HOSTNAME={{ ansible_hostname }}"
 
     - name: Modificar HostMetadata no arquivo de configuração do Zabbix
-      win_lineinfile:
+      ansible.windows.win_lineinfile:
         path: "C:\\Program Files\\Zabbix Agent 2\\zabbix_agent2.conf"
         regexp: '^HostMetadata=.*'
         line: "HostMetadata=Windows"
         create: yes
 
     - name: Reiniciar o serviço do Zabbix Agent 2
-      win_service:
+      ansible.windows.win_service:
         name: "Zabbix Agent 2"
         state: restarted
