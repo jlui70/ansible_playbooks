@@ -11,3 +11,4 @@
         agent_package_state: latest         # Instala a versão mais recente disponível
         agent_apply_firewalld_rule: false   # Não altera configurações de firewall
         agent_param_hostmetadata: "srvlinux"
+        agent_param_hostname: "{{inventory_hostname}}"
