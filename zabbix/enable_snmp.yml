@@ -1,0 +1,14 @@
+---
+- name: Habilitar SNMP no Mikrotik via SSH
+  hosts: switchs_monitorados
+  gather_facts: no
+  tasks:
+    - name: Habilitar SNMP no Mikrotik
+      community.routeros.command:
+        commands:
+          - "/snmp set enabled=yes"
+
+    - name: Configurar a comunidade SNMP
+      community.routeros.command:
+        commands:
+          - "/snmp community set [find default=yes] name=noto"
