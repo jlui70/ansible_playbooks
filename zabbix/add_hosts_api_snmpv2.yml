@@ -1,0 +1,54 @@
+---
+- name: Criar Hosts no Zabbix via API
+  hosts: switchs_monitorados
+  gather_facts: no
+  collections:
+    - community.zabbix
+
+  vars:
+    ansible_connection: httpapi
+    ansible_network_os: community.zabbix.zabbix
+    ansible_httpapi_port: 8080
+    ansible_httpapi_use_ssl: false
+    ansible_httpapi_validate_certs: false
+    ansible_host: "192.168.4.11"  # IP do Zabbix Server
+    ansible_zabbix_url_path: ""
+
+    # Token (utilizado pelo httpapi)
+    ansible_zabbix_auth_key: "931812afa9bd5073e075f41c1267525260a89d7f747d4ac57b32e3ccfc52a0e3"
+
+    # Definição padrão de Grupo e Template para os Hosts
+    zabbix_groups:
+      - "SWITCHS"
+    zabbix_link_templates:
+      - "NOTO - INTERFACE SNMP"
+    
+    # Configuração SNMP
+    snmp_community: "noto"  # Altere para a sua comunidade SNMP
+    snmp_version: 2  # SNMPv2 (pode ser 1, 2 ou 3)
+
+  tasks:
+    - name: Criar hosts no Zabbix
+      community.zabbix.zabbix_host:
+        host_name: "{{ inventory_hostname }}"
+        host_groups: "{{ zabbix_groups }}"
+        link_templates: "{{ zabbix_link_templates }}"
+        interfaces:
+          - type: 2
+            main: 1
+            useip: 1
+            ip: "{{ hostvars[inventory_hostname]['ansible_host'] }}"
+            dns: ""
+            port: "161"
+            details:
+              version: "{{ snmp_version }}"
+              bulk: 1  # Usa consultas SNMP em massa para eficiência
+              community: "{{ snmp_community }}"  # Aqui definimos corretamente
+      register: zabbix_api_hosts_created
+      until: zabbix_api_hosts_created is succeeded
+      retries: 3
+      delay: 5
+
+    - name: Exibir resultado da criação dos hosts
+      debug:
+        var: zabbix_api_hosts_created
