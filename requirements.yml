@@ -10,3 +10,5 @@ collections:
     version: "2.3.0"
   - name: community.zabbix
     version: "3.3.0"
+  - name: community.routeros
+    version: "2.20.0"
