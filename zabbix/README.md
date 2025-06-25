@@ -71,6 +71,9 @@ Se você já possui um MySQL instalado, **não recomendamos utilizar este playbo
     ```bash
     ansible-playbook -i /etc/ansible/hosts ansible_playbooks/zabbix/playbook_install_zabbix7_ubuntu2404_mysql.yml
     ```
+    Funcionou com este comando devido usuario ssh com pwd:
+
+   sudo ansible-playbook -i /etc/ansible/hosts ansible_playbooks/zabbix/playbook_install_zabbix7_ubuntu2404_mysql.yml --ask-become-pass
 
     > Lembre-se de substituir `/etc/ansible/hosts` pelo caminho do seu inventário, caso não esteja usando o padrão.
 
